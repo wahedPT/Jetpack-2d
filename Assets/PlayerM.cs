@@ -7,7 +7,8 @@ public class PlayerM : MonoBehaviour
 {
    // public float speed;
     Rigidbody2D rb;
-    public bool gameOver = false;
+   public Gamemanager gameManager;
+    //public bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +16,7 @@ public class PlayerM : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (gameOver)
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
-                SceneManager.LoadScene("Game");
-            }
-            return;
-        }
+      
       if(Input.GetKey(KeyCode.Space))
       {
             rb.AddForce(new Vector2(0, 50));
@@ -42,9 +36,17 @@ public class PlayerM : MonoBehaviour
     {
         if(collision.gameObject.tag== "Enemy")
         {
-            gameOver = true;
-            rb.isKinematic = true;
-           // Destroy(this.gameObject);
+            // gameOver = true;
+
+            Destroy(this.gameObject);
+            gameManager.GameOver();
+            // Destroy(this.gameObject);
+        }
+        if (collision.gameObject.tag == "Coins")
+        {
+            Score.Scorevalue += 1;
+            collision.gameObject.SetActive(false);
+           //Destroy(collision.gameObject);
         }
     }
 }
