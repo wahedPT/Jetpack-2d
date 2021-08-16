@@ -20,7 +20,7 @@ public class Cam : MonoBehaviour
     {
         if (Gamemanager.gameOver == false)
         {
-            transform.Translate(new Vector2(5, 0) * Time.deltaTime);
+            transform.Translate(new Vector2(5     , 0) * Time.deltaTime);
         }
 
            
